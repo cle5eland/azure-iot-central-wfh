@@ -6,4 +6,4 @@ rg=$4
 subscription=$5
 az vm start --name $machineName -g $rg --subscription $subscription &&
 sh ./proxy-port.sh $alias $ip
-ssh $alias@$ip
+sh ./ssh.sh $alias $ip

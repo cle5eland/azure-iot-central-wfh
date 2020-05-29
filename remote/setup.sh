@@ -25,13 +25,14 @@ printf '%s\n' "${b64}"
 
 npmrc="@azure-iot:registry=https://msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/\n
 always-auth=true\n
+; begin auth token\n
 //msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:username=msazure\n
 //msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:_password=$b64\n
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:email=npm requires email to be set but doesn't use the value\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:email=email\n
 //msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:username=msazure\n
 //msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:_password=$b64\n
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:email=npm requires email to be set but doesn't use the value\n
-"
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:email=email\n
+; end auth token"
 
 rm ~/.npmrc
 echo $npmrc > ~/.npmrc
@@ -55,7 +56,6 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt -y -qq update
 apt-cache policy docker-ce
 sudo apt -y -qq install docker-ce
-sudo systemctl status docker
 echo "Done"
 
 cd azure-iots-saas/infrastructure

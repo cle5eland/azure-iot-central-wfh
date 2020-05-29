@@ -9,4 +9,5 @@ mkdir user
 echo "sh ../templates/startWFH.sh $alias $ip $machineName $rg $subscription" > ./user/startWFH.sh
 echo "sh ../templates/stopWFH.sh $alias $ip $machineName $rg $subscription" > ./user/stopWFH.sh
 echo "sh ../templates/proxy-port.sh $alias $ip" > ./user/proxy-port.sh
+echo "sh ../templates/ssh.sh $alias $ip" > ./user/ssh.sh
 
