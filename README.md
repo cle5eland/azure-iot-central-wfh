@@ -29,5 +29,13 @@ Next, we are going to provision the guts of our development environment. I have 
 1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 1. Clone this repo
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
-1. From your shell, navigate to the `local` directory under this project, and run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience).
-1.
+1. From your shell, navigate to the `local` directory under this project, and run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
+
+### Set up your VM to run IoT Central
+
+Okay, great! We have our machine. Next, let's get IoT Central running.
+
+1. Navigate to the local/user folder.
+1. Run `sh startWFH.sh`
+1. You'll be ssh-ed into your new machine. These next set of instructions will all be on this remote machine.
+1. Clone this repo.
