@@ -3,23 +3,23 @@
 cd ~
 # Install Node
 echo "installing nodejs..."
-sudo apt update
-sudo apt install nodejs
-sudo apt install npm
+sudo apt -y -qq update
+sudo apt -y -qq install nodejs
+sudo apt -y -qq install npm
 nodejs -v
 echo "Done!"
 
 # Configure Python
 echo "configuring python..."
-sudo apt -y upgrade
-sudo apt install -y python3-pip
-sudo apt install build-essential libssl-dev libffi-dev python3-dev
+sudo apt -y -qq upgrade
+sudo apt install -y -qq python3-pip
+sudo apt install -y -qq build-essential libssl-dev libffi-dev python3-dev
 echo "Done!"
 
 # configure .npmrc
 echo "Configuring npm..."
 read -p "Packaging personal access token (generated from VSTS): " token
-b64=($(echo $token | base64))
+b64=$(echo $token | base64)
 printf '%s\n' "${b64}"
 
 npmrc="@azure-iot:registry=https://msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/
@@ -48,12 +48,12 @@ echo "Repo cloned!"
 
 # Install docker
 echo "Installing docker..."
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y -qq apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt update
+sudo apt -y -qq update
 apt-cache policy docker-ce
-sudo apt install docker-ce
+sudo apt -y -qq install docker-ce
 sudo systemctl status docker
 echo "Done"
 
