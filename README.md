@@ -41,3 +41,8 @@ Okay, great! We have our machine. Next, let's get IoT Central running.
 1. Run `sh startWFH.sh`
 1. You'll be ssh-ed into your new machine. These next set of instructions will all be on this remote machine.
 1. Clone this repo.
+ <!--
+    Figure out where this repo will live/permissions
+ -->
+1. Navigate to the `remote` directory.
+1. run `sh setup.sh`

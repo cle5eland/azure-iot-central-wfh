@@ -50,14 +50,36 @@ echo "Repo cloned!"
 
 # Install docker
 echo "Installing docker..."
-sudo apt install -y -qq apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt -y -qq update
-apt-cache policy docker-ce
-sudo apt -y -qq install docker-ce
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+# sudo apt -y -qq update
+# apt-cache policy docker-ce
+sudo apt-get remove docker docker-engine docker.io
+sudo apt install -y -qq containerd docker.io
+sudo systemctl unmask docker
+sudo systemctl start docker
+sudo systemctl enable docker
+docker --version
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 echo "Done"
 
+# configure user.env
+echo "Configuring user.env..."
+read -p "Please provide alias: " user
+user_env ="SERVICE_BUS_TOPIC=WFH_$user\n
+COMMON_NAMESPACE=WFH_$user\n
+IOTHUB_USE_ENVIRONMENT_POOLING=false\n
+MONITOR_IOTHUB_ENABLE=true\n
+# SERVICE_BUS_CONNECTION_STRING={ \"id\": \"https://projectsantorini-local.vault.azure.net/secrets/service-bus-connection-string\" }\n
+IOTHUBS_EVENT_HUB_CONNECTION_STRING={ \"id\": \"https://projectsantorini-local.vault.azure.net/secrets/iothubs-event-hub-connection-string-4\" }\n
+"
 cd azure-iots-saas/infrastructure
+rm user.env
+echo $user_env > user.env
+echo "user.env configured!"
+echo "Running IoT Central..."
 npm ci && npm run build
+npm run refresh-local-keys
 npm run ecosystem -- -d
+echo "IoT Central running successfully!"
