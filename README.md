@@ -12,7 +12,9 @@ Laptops often aren't powerful enough to run our local environment in a developer
 
 ### Prerequisites
 
-If you are on Windows, make sure you have a unix-like shell available to you. I recommend using a unix console emulator like [cmder](https://cmder.net/), but if you are familiar with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), that should work too (it's awesome, I just haven't tried it specifically for this guide). The rest of this guide assumes you are working in a unix-like environment.
+1. If you are on Windows, make sure you have a unix-like shell available to you. I recommend using a unix console emulator like [cmder](https://cmder.net/), but if you are familiar with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), that should work too (it's awesome, I just haven't tried it specifically for this guide). The rest of this guide assumes you are working in a unix-like environment.
+1. [Visual Studio Code](https://code.visualstudio.com/download).
+1. For interns/new hires--make sure you have your access configured, your github account linked appropriately, DockerHub account created, etc. before going through this guide. Work with your manager/mentor to get this all set up correctly.
 
 ### Set up Visual Studio Enterprise subscription with your MSDN Account
 
