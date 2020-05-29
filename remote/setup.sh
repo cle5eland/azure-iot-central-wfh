@@ -3,17 +3,15 @@
 cd ~
 # Install Node
 echo "installing nodejs..."
-sudo apt -y -qq update
-sudo apt -y -qq install nodejs
-sudo apt -y -qq install npm
-nodejs -v
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+nvm install node
 echo "Done!"
 
 # Configure Python
 echo "configuring python..."
 sudo apt -y -qq upgrade
-sudo apt install -y -qq python3-pip
-sudo apt install -y -qq build-essential libssl-dev libffi-dev python3-dev
+sudo apt -y -qq install python3-pip
+sudo apt -y -qq install build-essential libssl-dev libffi-dev python3-dev
 echo "Done!"
 
 # configure .npmrc
@@ -22,14 +20,14 @@ read -p "Packaging personal access token (generated from VSTS): " token
 b64=$(echo $token | base64)
 printf '%s\n' "${b64}"
 
-npmrc="@azure-iot:registry=https://msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/
-always-auth=true
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:username=msazure
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:_password=$b64
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:email=npm requires email to be set but doesn't use the value
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:username=msazure
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:_password=$b64
-//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:email=npm requires email to be set but doesn't use the value
+npmrc="@azure-iot:registry=https://msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/\n
+always-auth=true\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:username=msazure\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:_password=$b64\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/:email=npm requires email to be set but doesn't use the value\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:username=msazure\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:_password=$b64\n
+//msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/:email=npm requires email to be set but doesn't use the value\n
 "
 
 rm ~/.npmrc
