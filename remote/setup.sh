@@ -51,6 +51,7 @@ git clone https://msazure.visualstudio.com/DefaultCollection/One/_git/azure-iots
 
 printf '\n%s\n' "Repo cloned!"
 
+
 # Install docker
 printf '\n%s\n' "Installing docker..."
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -61,18 +62,22 @@ sudo apt -y remove docker docker-engine docker.io >/dev/null
 sudo apt -y install containerd docker.io >/dev/null
 sudo getent group docker || sudo groupadd docker
 sudo usermod -aG docker $USER
+# enable rootless
+curl -fsSL https://get.docker.com/rootless | sh
 printf '\n%s\n' "unmasking docker..."
 sudo systemctl unmask docker >/dev/null
 printf '\n%s\n' "starting docker..."
-sudo systemctl start docker >/dev/null
+systemctl --user start docker
 printf '\n%s\n' "enabling docker..."
-sudo systemctl enable docker >/dev/null
+systemctl --user enable docker
+sudo loginctl enable-linger $(whoami)
 printf '\n%s\n' "installing docker compose..."
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 # sudo groupadd docker;
 # sudo rm ~/.docker
 printf '\n%s\n' "Done!"
+
 
 
 # configure hosts file
@@ -101,7 +106,7 @@ printf '\n%s\n' "Done!"
 # configure user.env
 printf '\n%s\n' "Configuring user.env..."
 read -p "Please provide alias: " user
-user_env ="SERVICE_BUS_TOPIC=WFH_$user\n
+user_env="SERVICE_BUS_TOPIC=WFH_$user\n
 COMMON_NAMESPACE=WFH_$user\n
 IOTHUB_USE_ENVIRONMENT_POOLING=false\n
 MONITOR_IOTHUB_ENABLE=true\n
