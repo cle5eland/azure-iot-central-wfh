@@ -18,11 +18,13 @@ Laptops often aren't powerful enough to run our local environment in a developer
 
 ### Set up Visual Studio Enterprise subscription with your MSDN Account
 
-1. Go to the Visual Studio Enterprise Subscription [Management Page](https://my.visualstudio.com/benefits)
-1. Login with your Microsoft Work Account (if you're an intern and either have not set this up or are getting Permission Denied, ask your manager)
-1. Under "Azure \$150 monthly credit" hit "Activate"
-   ![](./assets/AzureMonthlyCredit.png)
-1. Enter the email of your personal MSDN Account (NOT your work email) and follow the steps.
+1.  Go to the Visual Studio Enterprise Subscription [Management Page](https://my.visualstudio.com/benefits)
+1.  Login with your Microsoft Work Account (if you're an intern and either have not set this up or are getting Permission Denied, ask your manager)
+1.  Under "Azure \$150 monthly credit" hit "Activate"
+
+      <img src="./assets/AzureMonthlyCredit.png" alt="AzureMonthlyCredit" width="400"/>
+
+1.  Enter the email of your personal MSDN Account (NOT your work email) and follow the steps.
 
 ### Create a VM
 
@@ -40,7 +42,9 @@ Okay, great! We have our machine. Next, let's get IoT Central running.
 Before we set up our environment, we need to create a Personal Access Token (PAT) on the Azure Dev Ops [PAT page](https://msazure.visualstudio.com/_usersSettings/tokens). Make sure you are logged in as your Microsoft account.
 
 1. Click "New Token."
-   ![](./assets/NewToken.png)
+
+ <img src="./assets/NewToken.png" alt="NewToken" width="600"/>
+
 1. Name it something like "WFH Machine Token" (just as long as you know what it is).
 1. Leave the Organization field alone.
 1. If you are an intern, change the Expiration Date to the day AFTER your internship ends.
@@ -49,7 +53,9 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
     1. Code -- Full
     1. Packaging -- Read, Write, and Manage
 1. It should look something like this
-   ![](./assets/TokenDefinition.png)
+
+ <img src="./assets/TokenDefinition.png" alt="TokenDefinition" width="200"/>
+
 1. Click "Create."
 1. Copy the resulting string, but make sure you protect it like you would your password. It gives the owner access over your account :). Paste it somewhere TEMPORARY, because it will go away, and you won't be able to get it back.
 
@@ -81,7 +87,8 @@ This will prompt you to login with docker hub, then will pull all the docker ima
 Alright, now our remote machine is almost totally configured, let's get our dev environment set up.
 
 1. Go to the `extensions` tab in VSCode and search "ssh"
-   ![](./assets/VSCodeExtensionsTab.png)
+
+ <img src="./assets/VSCodeExtensionsTab.png" alt="VSCodeExtensionsTab" width="200"/>
 
 1. Install "Remote - SSH" extension. You'll probably need to reload vscode.
 1. Go to the new "Remote Explorer" tab
@@ -101,11 +108,16 @@ Great, so we have our remote machine set up, and it should be running IoT Centra
 
 1. If you don't have it already, [install Firefox](https://www.mozilla.org/en-US/exp/firefox/).
 1. Go to preferences (Hamburger menu > Preferences).
-   ![](./assets/FirefoxHamburger.png)
+
+ <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
+
 1. Search "proxy" and click the resulting "Settings."
-   ![](./assets/FirefoxNetworkSettingsSearch.png)
+
+ <img src="./assets/FirefoxNetworkSettingsSearch.png" alt="FirefoxNetworkSettingsSearch" width="600"/>
+
 1. Make your settings look like this:
-   ![](./assets/FirefoxProxySettings.png)
+
+ <img src="./assets/FirefoxProxySettings.png" alt="FirefoxProxySettings" width="300"/>
 
 Cool, that's all we need to do for firefox. Make sure the download script that's running on your remote machine is complete (and didn't fail) before continuing.
 
