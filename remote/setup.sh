@@ -4,7 +4,13 @@ printf '\n%s\n' "Starting setup..."
 set +e
 $wd=$(pwd) 
 cd ~
+read -p "Please provide alias: " user
+read -p "Packaging personal access token (generated from VSTS): " token
+
+printf '\n%s\n' "Updating apt..."
 sudo apt-get update -y
+printf '\n%s\n' "Done."
+
 # Install Node
 printf '\n%s\n' "installing nodejs..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash >/dev/null
@@ -23,7 +29,6 @@ echo "Done!"
 
 # configure .npmrc
 printf '\n%s\n' "Configuring npm..."
-read -p "Packaging personal access token (generated from VSTS): " token
 cleanToken=$(echo $token | tr -d '\n')
 b64=$(echo -n $cleanToken | base64)
 
@@ -49,22 +54,19 @@ git config --global credential.helper store
 # Generate a PAT before this step.
 read -p "git will ask for you username and password. Your username should be your alias, and your password should be the Personal Access Token generated with git permissions on VSTS. Press enter to continue." throwaway
 sudo rm -rf azure-iots-saas
-git clone https://msazure.visualstudio.com/DefaultCollection/One/_git/azure-iots-saas
+git clone https://$user@msazure.visualstudio.com/DefaultCollection/One/_git/azure-iots-saas
 
 printf '\n%s\n' "Repo cloned!"
 
 # Install docker
 printf '\n%s\n' "Installing docker..."
 sudo apt-get install -y uidmap
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-# sudo apt -y -qq update
-# apt-cache policy docker-ce
 sudo apt -y remove docker docker-engine docker.io >/dev/null
 sudo apt -y install containerd docker.io >/dev/null
 sudo getent group docker || sudo groupadd docker
 sudo usermod -aG docker $USER
 # enable rootless
+# TODO: ensure I actually need rootless
 curl -fsSL https://get.docker.com/rootless | sh
 printf '\n%s\n' "unmasking docker..."
 sudo systemctl unmask docker >/dev/null
@@ -76,8 +78,6 @@ sudo loginctl enable-linger $(whoami)
 printf '\n%s\n' "installing docker compose..."
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-# sudo groupadd docker;
-# sudo rm ~/.docker
 printf '\n%s\n' "Done!"
 
 
@@ -104,25 +104,4 @@ sudo rm /etc/hosts
 echo $hosts | sudo tee /etc/hosts
 printf '\n%s\n' "Done!"
 
-# configure user.env
-printf '\n%s\n' "Configuring user.env..."
-read -p "Please provide alias: " user
-user_env="SERVICE_BUS_TOPIC=WFH_$user\n
-COMMON_NAMESPACE=WFH_$user\n
-IOTHUB_USE_ENVIRONMENT_POOLING=false\n
-MONITOR_IOTHUB_ENABLE=true\n
-# SERVICE_BUS_CONNECTION_STRING={ \"id\": \"https://projectsantorini-local.vault.azure.net/secrets/service-bus-connection-string\" }\n
-IOTHUBS_EVENT_HUB_CONNECTION_STRING={ \"id\": \"https://projectsantorini-local.vault.azure.net/secrets/iothubs-event-hub-connection-string-4\" }\n
-"
-cd azure-iots-saas/infrastructure
-rm user.env
-echo $user_env > user.env
-echo "user.env configured!"
-echo "Running IoT Central..."
-npm ci && npm run build
-sudo rm -rf projectsantorini-keyvault-int*
-npm run refresh-local-keys
-newgrp docker <<EONG
-npm run ecosystem -- -d
-EONG
-printf '\n%s\n' "IoT Central running successfully!"
+printf '\n%s\n' "Setup Complete!"
