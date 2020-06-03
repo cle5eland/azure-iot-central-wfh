@@ -4,6 +4,7 @@ printf '\n%s\n' "Starting setup..."
 set +e
 $wd=$(pwd) 
 cd ~
+sudo apt-get update -y
 # Install Node
 printf '\n%s\n' "installing nodejs..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash >/dev/null
@@ -23,7 +24,8 @@ echo "Done!"
 # configure .npmrc
 printf '\n%s\n' "Configuring npm..."
 read -p "Packaging personal access token (generated from VSTS): " token
-b64=$(echo $token | base64)
+cleanToken=$(echo $token | tr -d '\n')
+b64=$(echo -n $cleanToken | base64)
 
 npmrc="@azure-iot:registry=https://msazure.pkgs.visualstudio.com/_packaging/AzureIOTSaas/npm/registry/\n
 always-auth=true\n
@@ -51,9 +53,9 @@ git clone https://msazure.visualstudio.com/DefaultCollection/One/_git/azure-iots
 
 printf '\n%s\n' "Repo cloned!"
 
-
 # Install docker
 printf '\n%s\n' "Installing docker..."
+sudo apt-get install -y uidmap
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 # sudo apt -y -qq update
@@ -77,7 +79,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 # sudo groupadd docker;
 # sudo rm ~/.docker
 printf '\n%s\n' "Done!"
-
 
 
 # configure hosts file
@@ -124,6 +125,4 @@ npm run refresh-local-keys
 newgrp docker <<EONG
 npm run ecosystem -- -d
 EONG
-echo "IoT Central running successfully!"
-
-cd $wd
+printf '\n%s\n' "IoT Central running successfully!"
