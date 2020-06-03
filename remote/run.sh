@@ -1,3 +1,4 @@
+cd ~
 # login to docker hub
 docker login
 
