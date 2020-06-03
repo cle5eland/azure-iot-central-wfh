@@ -43,7 +43,7 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
 
 1. Click "New Token."
 
- <img src="./assets/NewToken.png" alt="NewToken" width="600"/>
+   <img src="./assets/NewToken.png" alt="NewToken" width="600"/>
 
 1. Name it something like "WFH Machine Token" (just as long as you know what it is).
 1. Leave the Organization field alone.
@@ -54,7 +54,7 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
     1. Packaging -- Read, Write, and Manage
 1. It should look something like this
 
- <img src="./assets/TokenDefinition.png" alt="TokenDefinition" width="200"/>
+   <img src="./assets/TokenDefinition.png" alt="TokenDefinition" width="200"/>
 
 1. Click "Create."
 1. Copy the resulting string, but make sure you protect it like you would your password. It gives the owner access over your account :). Paste it somewhere TEMPORARY, because it will go away, and you won't be able to get it back.
@@ -88,7 +88,7 @@ Alright, now our remote machine is almost totally configured, let's get our dev 
 
 1. Go to the `extensions` tab in VSCode and search "ssh"
 
- <img src="./assets/VSCodeExtensionsTab.png" alt="VSCodeExtensionsTab" width="200"/>
+   <img src="./assets/VSCodeExtensionsTab.png" alt="VSCodeExtensionsTab" width="200"/>
 
 1. Install "Remote - SSH" extension. You'll probably need to reload vscode.
 1. Go to the new "Remote Explorer" tab
@@ -109,15 +109,15 @@ Great, so we have our remote machine set up, and it should be running IoT Centra
 1. If you don't have it already, [install Firefox](https://www.mozilla.org/en-US/exp/firefox/).
 1. Go to preferences (Hamburger menu > Preferences).
 
- <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
+   <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
 
 1. Search "proxy" and click the resulting "Settings."
 
- <img src="./assets/FirefoxNetworkSettingsSearch.png" alt="FirefoxNetworkSettingsSearch" width="600"/>
+   <img src="./assets/FirefoxNetworkSettingsSearch.png" alt="FirefoxNetworkSettingsSearch" width="600"/>
 
 1. Make your settings look like this:
 
- <img src="./assets/FirefoxProxySettings.png" alt="FirefoxProxySettings" width="300"/>
+   <img src="./assets/FirefoxProxySettings.png" alt="FirefoxProxySettings" width="300"/>
 
 Cool, that's all we need to do for firefox. Make sure the download script that's running on your remote machine is complete (and didn't fail) before continuing.
 
