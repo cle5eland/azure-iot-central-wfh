@@ -1,7 +1,4 @@
 #!/bin/bash
-sudo apt-get update
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-az login --use-device-code
 rg="IOTC_WFH"
 vmName="IOTC_WFH_MACHINE"
 az account set --subscription "Visual Studio Enterprise"
