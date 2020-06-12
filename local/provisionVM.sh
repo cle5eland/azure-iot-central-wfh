@@ -1,7 +1,7 @@
 #!/bin/bash
 rg="IOTC_WFH"
 vmName="IOTC_WFH_MACHINE"
-az account set --subscription "Visual Studio Enterprise"
+az account set --subscription "Visual Studio Enterprise Subscription"
 subscriptionId=$(az account show --query id -o tsv)
 az account list-locations --query [].name
 read -p "Enter resource location [westus]: " loc
