@@ -1,8 +1,11 @@
 #!/bin/bash
+sudo apt-get update
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+az login --use-device-code
 rg="IOTC_WFH"
 vmName="IOTC_WFH_MACHINE"
 az account set --subscription "Visual Studio Enterprise"
-subscriptionId=($(az account show --query id -o tsv))
+subscriptionId=$(az account show --query id -o tsv)
 az account list-locations --query [].name
 read -p "Enter resource location [westus]: " loc
 loc=${loc:-westus}
