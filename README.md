@@ -13,6 +13,7 @@ Laptops often aren't powerful enough to run our local environment in a developer
 ### Prerequisites
 
 1. If you are on Windows, make sure you have a unix-like shell available to you. I recommend using a unix console emulator like [cmder](https://cmder.net/), but if you are familiar with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), that should work too (it's awesome, I just haven't tried it specifically for this guide). The rest of this guide assumes you are working in a unix-like environment.
+    1. If you are using cmder (or similar) on Windows, make sure you are running cmder _as Administrator_.
 1. [Visual Studio Code](https://code.visualstudio.com/download).
 1. For interns/new hires--make sure you have your access configured, your github account linked appropriately, DockerHub account created, etc. before going through this guide. Work with your manager/mentor to get this all set up correctly.
 
@@ -33,6 +34,7 @@ Next, we are going to provision the guts of our development environment. I have 
 1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 1. Clone this repo
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
+1. Windows users: run `windowsSetup.bat`.
 1. From your shell, navigate to the `local` directory under this project, and run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
 
 ### Set up your VM to run IoT Central
@@ -43,7 +45,7 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
 
 1. Click "New Token."
 
-   <img src="./assets/NewToken.png" alt="NewToken" width="600"/>
+ <img src="./assets/NewToken.png" alt="NewToken" width="600"/>
 
 1. Name it something like "WFH Machine Token" (just as long as you know what it is).
 1. Leave the Organization field alone.
@@ -54,7 +56,7 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
     1. Packaging -- Read, Write, and Manage
 1. It should look something like this
 
-   <img src="./assets/TokenDefinition.png" alt="TokenDefinition" width="200"/>
+ <img src="./assets/TokenDefinition.png" alt="TokenDefinition" width="200"/>
 
 1. Click "Create."
 1. Copy the resulting string, but make sure you protect it like you would your password. It gives the owner access over your account :). Paste it somewhere TEMPORARY, because it will go away, and you won't be able to get it back.
@@ -88,7 +90,7 @@ Alright, now our remote machine is almost totally configured, let's get our dev 
 
 1. Go to the `extensions` tab in VSCode and search "ssh"
 
-   <img src="./assets/VSCodeExtensionsTab.png" alt="VSCodeExtensionsTab" width="200"/>
+ <img src="./assets/VSCodeExtensionsTab.png" alt="VSCodeExtensionsTab" width="200"/>
 
 1. Install "Remote - SSH" extension. You'll probably need to reload vscode.
 1. Go to the new "Remote Explorer" tab
@@ -109,15 +111,15 @@ Great, so we have our remote machine set up, and it should be running IoT Centra
 1. If you don't have it already, [install Firefox](https://www.mozilla.org/en-US/exp/firefox/).
 1. Go to preferences (Hamburger menu > Preferences).
 
-   <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
+ <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
 
 1. Search "proxy" and click the resulting "Settings."
 
-   <img src="./assets/FirefoxNetworkSettingsSearch.png" alt="FirefoxNetworkSettingsSearch" width="600"/>
+ <img src="./assets/FirefoxNetworkSettingsSearch.png" alt="FirefoxNetworkSettingsSearch" width="600"/>
 
 1. Make your settings look like this:
 
-   <img src="./assets/FirefoxProxySettings.png" alt="FirefoxProxySettings" width="300"/>
+ <img src="./assets/FirefoxProxySettings.png" alt="FirefoxProxySettings" width="300"/>
 
 Cool, that's all we need to do for firefox. Make sure the download script that's running on your remote machine is complete (and didn't fail) before continuing.
 
