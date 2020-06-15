@@ -17,5 +17,5 @@ az vm open-port -g $rg -n $vmName --port 22
 $email=$userId+'@microsoft.com'
 az vm auto-shutdown -g $rg -n $vmName --time 0200 --email $email
 Write-Host "Provisioning Complete! Note the publicIpAddress field above. Now generating scripts with your public IP..."
-sh ./generateUserScripts.sh $userId $vmName $rg $subscriptionId
+./generateUserScripts.ps1 $userId $vmName $rg $subscriptionId
 Write-Host "Complete!"
