@@ -34,8 +34,8 @@ Next, we are going to provision the guts of our development environment. I have 
 1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 1. Clone this repo
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
-1. Windows users: run `windowsSetup.bat`.
-1. From your shell, navigate to the `local` directory under this project, and run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
+1. Navigate to the `local` directory under this project.
+1. Run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
 
 ### Set up your VM to run IoT Central
 
@@ -73,14 +73,14 @@ You'll be ssh-ed into your new machine. These next set of instructions will all 
 1. run `sh setup.sh`
 1. When prompted, enter your alias and the PAT you created earlier.
 1. If git prompts you for your "password," that will be your PAT as well.
-1. You'll be prompted to login with docker hub. Do that.
-1. You'll be prompted to do a "device login." Just follow the prompt, but make sure you log in with your MICROSOFT ACCOUNT.
 1. Your machine should be configured!
 1. Run `sudo reboot` to finish configuration. This will reboot your remote machine.
 
 This will kill our ssh connection, and we'll now be back on our local machine. Give it a minute, while your machine reboots, and then run `sh ssh.sh` from the `user` folder. If ssh connects successfully, we're good to move on to the next step. If not, your machine probably hasn't finished rebooting--try again!
 
 1. Finally, run `sh run.sh` from the `remote` folder.
+1. You'll be prompted to login with docker hub. Do that.
+1. You'll be prompted to do a "device login." Just follow the prompt, but make sure you log in with your MICROSOFT ACCOUNT.
 
 This will prompt you to login with docker hub, then will pull all the docker images for our service and run IoT Central on your remote machine. As soon as you see a ton of loading bars for the docker images (there's a lot to download here), go ahead and move on to the next section, and let this run in the background.
 
