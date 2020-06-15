@@ -126,6 +126,6 @@ Cool, that's all we need to do for firefox. Make sure the download script that's
 
 Here's where the magic happens.
 
-1. Go to the `user` directory and run `sh proxy-port.sh`.
+1. Go to the `user` directory and run `./proxy-port.ps1`.
 1. Go to Firefox and navigate to [https://apps.saas.localhost/]().
 1. You should see IoT Central running there :).
