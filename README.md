@@ -12,8 +12,7 @@ Laptops often aren't powerful enough to run our local environment in a developer
 
 ### Prerequisites
 
-1. If you are on Windows, make sure you have a unix-like shell available to you. I recommend using a unix console emulator like [cmder](https://cmder.net/), but if you are familiar with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), that should work too (it's awesome, I just haven't tried it specifically for this guide). The rest of this guide assumes you are working in a unix-like environment.
-    1. If you are using cmder (or similar) on Windows, make sure you are running cmder _as Administrator_.
+1. Powershell. All the commands on your local machine will be run using powershell.
 1. [Visual Studio Code](https://code.visualstudio.com/download).
 1. For interns/new hires--make sure you have your access configured, your github account linked appropriately, DockerHub account created, etc. before going through this guide. Work with your manager/mentor to get this all set up correctly.
 
@@ -29,13 +28,13 @@ Laptops often aren't powerful enough to run our local environment in a developer
 
 ### Create a VM
 
-Next, we are going to provision the guts of our development environment. I have put together a script to do this for you automatically.
+Next, we are going to provision the guts of our development environment. I have put together a script to do this for you automatically (using Powershell).
 
-1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
-1. Clone this repo
+1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). If you already have Azure CLI, _make sure you upgrade to latest_. For Windows users, make sure you install Azure CLI _for WSL_.
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
-1. Navigate to the `local` directory under this project.
-1. Run `sh ./provisionVM.sh`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
+1. Clone this repo
+1. Open Powershell and navigate to the `local` directory under this project.
+1. Run `./provisionVM.ps1`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
 
 ### Set up your VM to run IoT Central
 
@@ -64,7 +63,7 @@ Before we set up our environment, we need to create a Personal Access Token (PAT
 Now that we have our token, let's set up our new machine.
 
 1. Navigate to the local/user folder.
-1. Run `sh startWFH.sh`
+1. Run `./startWFH.ps1`
 
 You'll be ssh-ed into your new machine. These next set of instructions will all be on this remote machine.
 
@@ -76,7 +75,7 @@ You'll be ssh-ed into your new machine. These next set of instructions will all 
 1. Your machine should be configured!
 1. Run `sudo reboot` to finish configuration. This will reboot your remote machine.
 
-This will kill our ssh connection, and we'll now be back on our local machine. Give it a minute, while your machine reboots, and then run `sh ssh.sh` from the `user` folder. If ssh connects successfully, we're good to move on to the next step. If not, your machine probably hasn't finished rebooting--try again!
+This will kill our ssh connection, and we'll now be back on our local machine. Give it a minute, while your machine reboots, and then run `./ssh.ps1` from the `user` folder. If ssh connects successfully, we're good to move on to the next step. If not, your machine probably hasn't finished rebooting--try again!
 
 1. Finally, run `sh run.sh` from the `remote` folder.
 1. You'll be prompted to login with docker hub. Do that.
@@ -109,7 +108,7 @@ This will open a VSCode instance that points at your remote machine. wOw.
 Great, so we have our remote machine set up, and it should be running IoT Central locally. Next, let's see our instance of the app. For this portion of the tutorial, we are going to use Firefox, which I use exclusively for this purpose. In theory, it works with other browsers, too.
 
 1. If you don't have it already, [install Firefox](https://www.mozilla.org/en-US/exp/firefox/).
-1. Go to preferences (Hamburger menu > Preferences).
+1. Go to preferences (options on Windows) (Hamburger menu > Preferences (options)).
 
  <img src="./assets/FirefoxHamburger.png" alt="FirefoxHamburger" width="600"/>
 
