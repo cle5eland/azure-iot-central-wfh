@@ -137,6 +137,8 @@ Here's where the magic happens.
 
 As configured here, your VM will auto-shutdown every day at 7pm PST. So, when you start working in the morning, run `startWFH.ps1`. This will start your VM and proxy your port on your machine. You can change this auto-shutdown configuration in the Azure Portal or using the CLI. You'll also get an email 30 minutes before shutdown--you can configure this behavior as well.
 
+If you'd like to stop (full shutdown i.e. terminate) your machine, you can use the `stopWFH.ps1` script.
+
 If your proxy ever stops working (which can happen from time to time), just run `proxy-port.ps1`.
 
 Also, for your convenience, you can ssh into your machine using `ssh.ps1`.
