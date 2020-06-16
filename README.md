@@ -35,7 +35,9 @@ Next, we are going to provision the guts of our development environment. I have 
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
 1. Clone this repo
 1. Open Powershell and navigate to the `local` directory under this project.
-1. Run `./provisionVM.ps1`. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
+1. Run `./provisionVM.ps1`.
+1. The subscription name defaults to `Visual Studio Enterprise Subscription`. If your subscription name is different than that (for example, mine is `Visual Studio Enterprise`), enter that here.
+1. The location defaults to West US, but feel free to change it to something closer to you (the list of valid location values will be listed for your convenience). This will provision your machine and generate all the scripts you'll need to use on the day-to-day in the `local/user` directory.
 
 ### Set up your VM to run IoT Central
 
@@ -130,3 +132,17 @@ Here's where the magic happens.
 1. Go to the `user` directory and run `./proxy-port.ps1`.
 1. Go to Firefox and navigate to [https://apps.saas.localhost/]().
 1. You should see IoT Central running there :).
+
+## Normal Use
+
+As configured here, your VM will auto-shutdown every day at 7pm PST. So, when you start working in the morning, run `startWFH.ps1`. This will start your VM and proxy your port on your machine. You can change this auto-shutdown configuration in the Azure Portal or using the CLI. You'll also get an email 30 minutes before shutdown--you can configure this behavior as well.
+
+If your proxy ever stops working (which can happen from time to time), just run `proxy-port.ps1`.
+
+Also, for your convenience, you can ssh into your machine using `ssh.ps1`.
+
+Generally, once you have your machine running, I do everything through VSCode using the Remote SSH Extension. You can open a terminal here as well.
+
+## Further Steps
+
+I recommend configuring the Docker extension on your _remote machine_. There is a known bug where this will not install correctly on your remote machine if you already have it installed on your local instance--to mitigate, remove on local machine, install on remote (VSCode will give you this option once you are remote-ed to your machine), then re-install on local. Once configured correctly, you can manage all the Docker containers on your remote machine from VSCode.
