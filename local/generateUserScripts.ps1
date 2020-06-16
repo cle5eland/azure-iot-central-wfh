@@ -4,7 +4,7 @@ $machineName=$args[1]
 $rg=$args[2]
 $subscription=$args[3]
 $ip=$(az vm show -d --resource-group $rg -n $machineName --subscription $subscription --query publicIps -o tsv)
-Remove-Item -Recurse -Force user
+Remove-Item -Recurse -Force user -ErrorAction Ignore
 New-Item -ItemType directory -Name user
 echo "../powershell-templates/startWFH.ps1 $alias $ip $machineName $rg $subscription" > ./user/startWFH.ps1
 echo "../powershell-templates/stopWFH.ps1 $alias $ip $machineName $rg $subscription" > ./user/stopWFH.ps1

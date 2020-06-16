@@ -31,6 +31,7 @@ Laptops often aren't powerful enough to run our local environment in a developer
 Next, we are going to provision the guts of our development environment. I have put together a script to do this for you automatically (using Powershell).
 
 1. Install Azure CLI for your operating system by following the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). If you already have Azure CLI, _make sure you upgrade to latest_.
+1. If you are on Windows, make sure you are running PowerShell as Administrator.
 1. From your shell, run `az login`, and follow the prompts to login with your MSDN Account (Not your microsoft account).
 1. Clone this repo
 1. Open Powershell and navigate to the `local` directory under this project.

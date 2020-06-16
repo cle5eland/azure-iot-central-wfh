@@ -1,8 +1,13 @@
 #! /usr/bin/pwsh
 
+$subscriptionName=Read-Host -Prompt "Enter Microsoft alias [default: Visual Studio Enterprise Subscription]"
+if ([string]::IsNullOrWhiteSpace($subscriptionName))
+{
+    $subscriptionName = "Visual Studio Enterprise Subscription"
+}
 $rg="IOTC_WFH"
 $vmName="IOTC_WFH_MACHINE"
-az account set --subscription "Visual Studio Enterprise"
+az account set --subscription $subscriptionName
 $subscriptionId=az account show --query id -o tsv
 az account list-locations --query [].name
 $loc=Read-Host -Prompt "Enter resource location [westus]"
