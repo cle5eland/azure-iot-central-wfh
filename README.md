@@ -145,4 +145,4 @@ Generally, once you have your machine running, I do everything through VSCode us
 
 ## Further Steps
 
-I recommend configuring the Docker extension on your _remote machine_. There is a known bug where this will not install correctly on your remote machine if you already have it installed on your local instance--to mitigate, remove on local machine, install on remote (VSCode will give you this option once you are remote-ed to your machine), then re-install on local. Once configured correctly, you can manage all the Docker containers on your remote machine from VSCode.
+I recommend configuring the Docker VSCode extension on your _remote machine_. There is a known bug where this will not install correctly on your remote machine if you already have it installed on your local instance--to mitigate, remove on local machine, install on remote (VSCode will give you this option once you are remote-ed to your machine), then re-install on local. Once configured correctly, you can manage all the Docker containers on your remote machine from VSCode.
