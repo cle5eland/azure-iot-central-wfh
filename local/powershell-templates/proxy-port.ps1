@@ -1,6 +1,5 @@
 #! /usr/bin/pwsh
 $alias=$args[0]
 $ip=$args[1]
-Start-Job -ScriptBlock {
-    & ssh -D 9030 -f -C -q -N $alias@$ip -p 22
-}
+$endpoint=$alias + '@' + $ip
+Start-Process ssh -ArgumentList '-D', '9030', '-f', '-C', '-q', '-N', $endpoint, '-p', '22'
