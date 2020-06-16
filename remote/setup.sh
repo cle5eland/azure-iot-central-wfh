@@ -2,7 +2,6 @@
 
 printf '\n%s\n' "Starting setup..."
 set +e
-$wd=$(pwd) 
 cd ~
 read -p "Please provide alias: " user
 read -p "Packaging personal access token (generated from VSTS): " token
