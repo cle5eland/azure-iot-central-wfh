@@ -147,4 +147,10 @@ Generally, once you have your machine running, I do everything through VSCode us
 
 ## Further Steps
 
+### Docker VSCode Extension
+
 I recommend configuring the Docker VSCode extension on your _remote machine_. There is a known bug where this will not install correctly on your remote machine if you already have it installed on your local instance--to mitigate, remove on local machine, install on remote (VSCode will give you this option once you are remote-ed to your machine), then re-install on local. Once configured correctly, you can manage all the Docker containers on your remote machine from VSCode.
+
+### Firefox Proxy Switch
+
+If you don't usually use Firefox, feel free to skip this step. If you do, Firefox will be basically busted because of the proxy configuration (it'll work while your remote machine is running and your proxy is set up, but not otherwise). If you want to easily toggle whether the proxy settings above are enabled, there are [extensions](https://addons.mozilla.org/en-US/firefox/addon/proxy-toggle/) for that. Haven't tried them myself but should be relatively straightforward.
