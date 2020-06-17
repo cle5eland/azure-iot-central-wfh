@@ -1,6 +1,6 @@
 #! /usr/bin/pwsh
 
-$subscriptionName=Read-Host -Prompt "Enter Microsoft alias [default: Visual Studio Enterprise Subscription]"
+$subscriptionName=Read-Host -Prompt "Enter Azure Subscription [default: Visual Studio Enterprise Subscription]"
 if ([string]::IsNullOrWhiteSpace($subscriptionName))
 {
     $subscriptionName = "Visual Studio Enterprise Subscription"
