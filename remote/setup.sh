@@ -51,7 +51,7 @@ printf '\n%s\n' "npm configured successfully!"
 echo "Cloning the IoT Central Repository..."
 git config --global credential.helper store
 # Generate a PAT before this step.
-read -p "git will ask for you username and password. Your username should be your alias, and your password should be the Personal Access Token generated with git permissions on VSTS. Press enter to continue." throwaway
+read -p "git will ask for your password--this should be the Personal Access Token generated with git permissions on VSTS. Press enter to continue." throwaway
 sudo rm -rf azure-iots-saas
 git clone https://$user@msazure.visualstudio.com/DefaultCollection/One/_git/azure-iots-saas
 
