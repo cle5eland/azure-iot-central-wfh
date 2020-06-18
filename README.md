@@ -131,6 +131,7 @@ Here's where the magic happens.
 
 1. Go to the `user` directory and run `./proxy-port.ps1`.
 1. Go to Firefox and navigate to [https://apps.saas.localhost/]().
+    1. Depending on your Firefox configuration, you might get some warnings. If this is the case, after you tell Firefox it's safe, you'll need to navigate explicitly to https://static.saas.localhost, and tell Firefox this subdomain is safe as well. Then go back and you should see the whole page rendered.
 1. You should see IoT Central running there :).
 
 ## Normal Use
