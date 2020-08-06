@@ -17,7 +17,7 @@ if ([string]::IsNullOrWhiteSpace($loc))
 }
 $userId=Read-Host -Prompt "Enter Microsoft alias"
 az group create --name $rg --location $loc
-az vm create --resource-group $rg --name $vmName --admin-username $userId --image UbuntuLTS --generate-ssh-keys --authentication-type ssh --size Standard_B8ms --os-disk-size-gb 100 --public-ip-address-allocation static 
+az vm create --resource-group $rg --name $vmName --admin-username $userId --image UbuntuLTS --generate-ssh-keys --authentication-type ssh --size Standard_E4s_v3 --os-disk-size-gb 100 --public-ip-address-allocation static 
 az vm open-port -g $rg -n $vmName --port 22
 $email=$userId+'@microsoft.com'
 az vm auto-shutdown -g $rg -n $vmName --time 0200 --email $email

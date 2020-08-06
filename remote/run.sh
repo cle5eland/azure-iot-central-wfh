@@ -18,6 +18,6 @@ echo "user.env configured!"
 echo "Running IoT Central..."
 npm ci && npm run build
 sudo rm -rf projectsantorini-keyvault-int*
-npm run refresh-local-keys
+npm run sync-local
 npm run ecosystem -- -d
 printf '\n%s\n' "IoT Central running successfully!"
